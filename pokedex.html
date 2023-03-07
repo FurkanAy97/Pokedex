@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="pokemonTypes.js"></script>
+    <script src="script.js"></script>
+</head>
+<body onload="loadPokemon()">
+    <header>
+        <img src="icons/Pokéball.svg.png">
+        <h1>Pokedex</h1>
+        <img src="icons/Pokéball.svg.png">
+    </header>
+    <div id="pokedex">
+        <div class="pokedex-header">
+            <h1 id="pokemonName"></h1>
+            <h3 id="pokemonNumber"></h3>
+        </div>
+        <div class="pokedex-subheader">
+            <div class="pokemonType" id="pokemonType"></div>
+            <div class="pokemonType" id="pokemonSecondType"></div>
+        </div>
+        <div class="pokedex-img-container">
+            <img id="pokemonImg">
+        </div>
+        <div class="pokedex-data-container">
+            <div class="pokedex-data-menu">
+                <a class="menu-links" style="font-weight: bold;" href="#">About</a>
+                <a class="menu-links" href="#">Stats</a>
+                <a class="menu-links" href="#">Evolution</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
