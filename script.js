@@ -12,15 +12,23 @@ async function loadPokemon(){
 }
 
 
-function renderPokedex(){
-    let pokedexContainer = document.getElementById('pokedex')
+async function renderPokedex(){
+    let pokedexContainer = document.getElementById('pokedex');
+    let loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'block'; // show the loading screen
     if (currentPokemonID < 151) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
+        let response = await fetch(url);
+        currentPokemon = await response.json();
         pokedexContainer.innerHTML += pokemonCardHTML(currentPokemonID);
-        currentPokemonID++
+        currentPokemonID++;
         changeCardColor(currentPokemonID);
         loadPokemon();
+    } else {
+        loadingScreen.style.display = 'none'; // hide the loading screen
     }
 }
+
 
 
 function pokemonCardHTML(i){
@@ -47,7 +55,7 @@ async function openPokemonCard(i) {
     currentPokemon = await response.json();
     changeColor();
     renderPokemonInfo();
-    renderAbout(i);
+    await renderAbout(i);
     displayLayer();
 }
   
@@ -73,7 +81,6 @@ function closePokemonCard() {
     let layer = document.getElementById('layer');
     pokedexCard.style.display = 'none';
     layer.style.display = 'none';
-  
     layer.removeEventListener('click', closePokemonCard);
 }
 
@@ -101,7 +108,7 @@ function renderPokemonInfo(){
 }
 
 
-function renderAbout(i){
+async function renderAbout(i){
     let height = currentPokemon['height']
     document.getElementById('height').innerHTML = (height / 10) + ' Meter';
     let weight = currentPokemon['weight'];

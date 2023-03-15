@@ -237,3 +237,71 @@ h1{
     font-size: large;
     color: rgba(0, 0, 0, 0.8);
 }
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex; /* add flexbox layout */
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
+}
+  
+.spinner-container{
+    position: absolute;
+    top: 107px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.spinner {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+@media(max-width: 700px){
+
+    #pokedex{
+        justify-content: space-evenly;
+    }
+
+    .pokemonCard{
+        width: 160px;
+        height: 140px;
+        padding: 8px;
+    }
+
+    .cardType{
+        width: fit-content;
+        font-size: 12px;
+    }
+
+    .cardHeader{
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .pokemonImg{
+        width: 110px;
+        height: 110px;
+    }
+
+    .pokemonImgBackground{
+        width: 110px;
+        height: 110px;
+    }
+
+    .pokemonCard{
+        margin: 4px;
+    }
+}
+  
