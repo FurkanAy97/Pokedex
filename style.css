@@ -44,8 +44,19 @@ h1{
     transition: box-shadow .2s ease-in-out;
 }
 
+#layer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+}
+
 .pokemonCard:hover{
-    box-shadow: 0 0 11px rgba(22,22,22,.8); 
+    box-shadow: 0 0 11px rgba(99,99,99,.8); 
 }
 
 .pokemon-card-container{
@@ -65,10 +76,15 @@ h1{
 #pokedexCard{
     height: 700px;
     max-width: 500px;
-    margin: 30px auto;
     background-color: white;
     color: white;
     border-radius: 20px;
+    position: absolute;
+    top: 107px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    box-shadow: 0 0 11px rgba(22,22,22,.8); 
 }
 
 .pokedex-header{

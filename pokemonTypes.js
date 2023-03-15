@@ -17,6 +17,7 @@ let colorMap = [
         'dragon': '#1568B5',
         'dark': '#313247',
         'steel': '#007877',
+        'fairy': '#E599E7',
     }
 ]
 
