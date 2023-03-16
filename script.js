@@ -1,14 +1,15 @@
 
 let currentPokemon;
-let speciesInfo
 let pokemonType;
 let currentPokemonID = 1;
+let progressValue = 50;
 
 async function loadPokemon(){
     let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
     renderPokedex();
+    console.log(currentPokemon);
 }
 
 
@@ -16,7 +17,7 @@ async function renderPokedex(){
     let pokedexContainer = document.getElementById('pokedex');
     let loadingScreen = document.getElementById('loading-screen');
     loadingScreen.style.display = 'block'; // show the loading screen
-    if (currentPokemonID < 151) {
+    if (currentPokemonID < 50) {
         let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
@@ -60,19 +61,18 @@ async function openPokemonCard(i) {
 }
   
  
-
-  
-  
 function displayLayer(){
     let pokedexCard = document.getElementById('pokedexCard');
     let layer = document.getElementById('layer');
     pokedexCard.style.display = 'block';
     layer.style.display = 'block';
-    layer.addEventListener('click', (event) => {
-      if (event.target === layer) {
-        closePokemonCard();
-      }
-    });
+    if (window.innerWidth >= 701) {
+        layer.addEventListener('click', (event) => {
+          if (event.target === layer) {
+            closePokemonCard();
+          }
+        });
+    }
 }
 
 
@@ -109,18 +109,59 @@ function renderPokemonInfo(){
 
 
 async function renderAbout(i){
+    let aboutContainer = document.getElementById('aboutContainer');
+    let statsContainer = document.getElementById('statsContainer');
+    let evolutionsContainer = document.getElementById('evolutionsContainer');
+    document.getElementById('menuLink1').style.fontWeight = 'bold'
+    document.getElementById('menuLink2').style.fontWeight = '400'
+    document.getElementById('menuLink3').style.fontWeight = '400'
+    aboutContainer.style.display = 'block';
+    statsContainer.style.display = 'none';
+    evolutionsContainer.style.display = 'none';
+    renderProgressBar();
+    getSize();
+    getDesciption(i);
+}
+
+
+function showStats(){
+    let aboutContainer = document.getElementById('aboutContainer');
+    let statsContainer = document.getElementById('statsContainer');
+    let evolutionsContainer = document.getElementById('evolutionsContainer');
+    document.getElementById('menuLink1').style.fontWeight = '400'
+    document.getElementById('menuLink2').style.fontWeight = 'bold'
+    document.getElementById('menuLink3').style.fontWeight = '400'
+    aboutContainer.style.display = 'none';
+    statsContainer.style.display = 'block';
+    evolutionsContainer.style.display = 'none';
+}
+
+
+function showEvolutions(){
+    let aboutContainer = document.getElementById('aboutContainer');
+    let statsContainer = document.getElementById('statsContainer');
+    let evolutionsContainer = document.getElementById('evolutionsContainer');
+    document.getElementById('menuLink1').style.fontWeight = '400'
+    document.getElementById('menuLink2').style.fontWeight = '400'
+    document.getElementById('menuLink3').style.fontWeight = 'bold'
+    aboutContainer.style.display = 'none';
+    statsContainer.style.display = 'none';
+    evolutionsContainer.style.display = 'block';
+}
+
+
+function getSize(){
     let height = currentPokemon['height']
     document.getElementById('height').innerHTML = (height / 10) + ' Meter';
     let weight = currentPokemon['weight'];
     document.getElementById('weight').innerHTML = (weight / 10) + ' KG';
-    getDesciption(i)
 }
 
 
 async function getDesciption(id){
     let url = `https://pokeapi.co/api/v2/pokemon-species/${id}`
     let response = await fetch(url)
-    speciesInfo = await response.json();
+    let speciesInfo = await response.json();
     document.getElementById('description').innerHTML = speciesInfo['flavor_text_entries'][9]['flavor_text'];
 }
 

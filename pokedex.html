@@ -20,6 +20,7 @@
     </div>
 
     <div id="layer" style="display: none;" >
+        <img src="img/x-mark-24.ico" id="closeButton" onclick="closePokemonCard()"></img>
         <div id="pokedexCard" style="display: none;">
             <div class="pokedex-header">
                 <h1 id="pokemonName"></h1>
@@ -34,9 +35,9 @@
             </div>
             <div class="pokedex-data-container">
                 <div class="pokedex-data-menu">
-                    <a class="menu-links" style="font-weight: bold;" href="#">About</a>
-                    <a class="menu-links" href="#">Stats</a>
-                    <a class="menu-links" href="#">Evolution</a>
+                    <a class="menu-links" id="menuLink1" style="font-weight: bold;" href="#" onclick="renderAbout()">About</a>
+                    <a class="menu-links" id="menuLink2" href="#" onclick="showStats()">Stats</a>
+                    <a class="menu-links" id="menuLink3" href="#" onclick="showEvolutions()">Evolution</a>
                 </div>
                 <div id="pokemonDescription">
                     <div id="aboutContainer">
@@ -48,8 +49,35 @@
                             <div id="description"></div>
                         </div>
                     </div>
-                    <div id="statsContainer"></div>
-                    <div id="evolutionContainer"></div>
+                    <div id="statsContainer" style="display: none;">
+                        <div class="statsRow">
+                            <p>HP</p>
+                            <div id="HP">
+                                
+                            </div>
+                        </div>
+                        <div class="statsRow">
+                            <p>Attack</p>
+                            <div id="Attack"></div>
+                        </div>
+                        <div class="statsRow">
+                            <p>Defense</p>
+                            <div id="Defense"></div>
+                        </div>
+                        <div class="statsRow">
+                            <p>Sp.Atk</p>
+                            <div id="Sp.Atk"></div>
+                        </div>
+                        <div class="statsRow">
+                            <p>Sp.Def</p>
+                            <div id="Sp.Def"></div>
+                        </div>
+                        <div class="statsRow">
+                            <p>Speed</p>
+                            <div id="Speed"></div>
+                        </div>
+                    </div>
+                    <div id="evolutionsContainer"></div>
                 </div>
             </div>
         </div>
