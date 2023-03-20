@@ -57,6 +57,7 @@ async function openPokemonCard(i) {
     changeColor();
     renderPokemonInfo();
     await renderAbout(i);
+    renderStats();
     displayLayer();
 }
   
@@ -118,7 +119,6 @@ async function renderAbout(i){
     aboutContainer.style.display = 'block';
     statsContainer.style.display = 'none';
     evolutionsContainer.style.display = 'none';
-    renderProgressBar();
     getSize();
     getDesciption(i);
 }
@@ -148,6 +148,24 @@ function showEvolutions(){
     statsContainer.style.display = 'none';
     evolutionsContainer.style.display = 'block';
 }
+
+
+function renderStats(){
+    const stats = currentPokemon['stats'];
+    renderStat('hp', stats[0]['base_stat']);
+    renderStat('attack', stats[1]['base_stat']);
+    renderStat('defense', stats[2]['base_stat']);
+    renderStat('spAtk', stats[3]['base_stat']);
+    renderStat('spDef', stats[4]['base_stat']);
+    renderStat('speed', stats[5]['base_stat']);
+}
+  
+  function renderStat(statId, baseStat) {
+    const statElement = document.getElementById(statId);
+    statElement.innerHTML = baseStat;
+    statElement.style.width = `${(baseStat/150)*100}%`;
+}
+  
 
 
 function getSize(){
