@@ -17,7 +17,7 @@ async function renderPokedex(){
     let pokedexContainer = document.getElementById('pokedex');
     let loadingScreen = document.getElementById('loading-screen');
     loadingScreen.style.display = 'block'; // show the loading screen
-    if (currentPokemonID < 50) {
+    if (currentPokemonID < 151) {
         let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
         let response = await fetch(url);
         currentPokemon = await response.json();

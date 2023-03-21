@@ -313,6 +313,7 @@ h1 {
         position: sticky;
         top: 0;
         z-index: 2;
+        height: 40px;
     }
 
     #layer {
@@ -326,26 +327,37 @@ h1 {
     }
 
     header img {
-        width: 50px;
+        width: 30px;
+        margin: 0 4px;
     }
 
     #pokedex {
         justify-content: space-evenly;
     }
 
+    .pokedex-data-container{
+        height: 100%;
+    }
+
     .pokemonCard {
         width: 178px;
-        height: 140px;
+        max-height: 140px;
         padding: 8px;
         margin: 4px;
     }
 
     #pokedexCard {
         width: 100%;
-        height: 100vh;
-        top: 76px;
+        max-height: 100%;
+        top: 40px;
         border-radius: 0;
     }
+
+    .pokemonType{
+        padding: 2px 4px;
+        font-size: 16px;
+    }
+    
 
     .cardType {
         width: fit-content;
@@ -359,20 +371,36 @@ h1 {
 
     .pokemonImg {
         width: 110px;
-        height: 110px;
+        max-height: 110px;
+    }
+
+    #pokemonImg{
+        width: 210px;
     }
 
     .pokemonImgBackground {
         width: 110px;
-        height: 110px;
+        max-height: 110px;
+    }
+
+    .statsRow p {
+        margin-top: 4px;
+    }
+
+    .size{
+        margin: 12px auto 0 auto;
+    }
+
+    .description{
+        margin: 14px auto;
     }
 
     #closeButton {
         display: block;
         position: absolute;
-        top: 25px;
+        top: 11px;
         right: 27px;
-        width: 25px;
+        width: 20px;
         z-index: 2;
         background-color: rgb(197, 197, 197);
         padding: 4px;
