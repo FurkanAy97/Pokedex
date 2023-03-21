@@ -59,6 +59,8 @@ async function openPokemonCard(i) {
     await renderAbout(i);
     renderStats();
     displayLayer();
+    renderAbilities(i);
+    getDesciption(i);
 }
   
  
@@ -109,44 +111,43 @@ function renderPokemonInfo(){
 }
 
 
-async function renderAbout(i){
+async function renderAbout(){
     let aboutContainer = document.getElementById('aboutContainer');
     let statsContainer = document.getElementById('statsContainer');
-    let evolutionsContainer = document.getElementById('evolutionsContainer');
+    let abilitiesContainer = document.getElementById('abilitiesContainer');
     document.getElementById('menuLink1').style.fontWeight = 'bold'
     document.getElementById('menuLink2').style.fontWeight = '400'
     document.getElementById('menuLink3').style.fontWeight = '400'
     aboutContainer.style.display = 'block';
     statsContainer.style.display = 'none';
-    evolutionsContainer.style.display = 'none';
+    abilitiesContainer.style.display = 'none';
     getSize();
-    getDesciption(i);
 }
 
 
 function showStats(){
     let aboutContainer = document.getElementById('aboutContainer');
     let statsContainer = document.getElementById('statsContainer');
-    let evolutionsContainer = document.getElementById('evolutionsContainer');
+    let abilitiesContainer = document.getElementById('abilitiesContainer');
     document.getElementById('menuLink1').style.fontWeight = '400'
     document.getElementById('menuLink2').style.fontWeight = 'bold'
     document.getElementById('menuLink3').style.fontWeight = '400'
     aboutContainer.style.display = 'none';
     statsContainer.style.display = 'block';
-    evolutionsContainer.style.display = 'none';
+    abilitiesContainer.style.display = 'none';
 }
 
 
-function showEvolutions(){
+function showAbilities(){
     let aboutContainer = document.getElementById('aboutContainer');
     let statsContainer = document.getElementById('statsContainer');
-    let evolutionsContainer = document.getElementById('evolutionsContainer');
+    let abilitiesContainer = document.getElementById('abilitiesContainer');
     document.getElementById('menuLink1').style.fontWeight = '400'
     document.getElementById('menuLink2').style.fontWeight = '400'
     document.getElementById('menuLink3').style.fontWeight = 'bold'
     aboutContainer.style.display = 'none';
     statsContainer.style.display = 'none';
-    evolutionsContainer.style.display = 'block';
+    abilitiesContainer.style.display = 'block';
 }
 
 
@@ -166,6 +167,34 @@ function renderStats(){
     statElement.style.width = `${(baseStat/150)*100}%`;
 }
   
+
+async function renderAbilities(i){
+    let abilitiesContainer = document.getElementById('abilitiesContainer');
+    abilitiesContainer.innerHTML = '';
+    /* let url = `https://pokeapi.co/api/v2/ability/${i}/`;
+    let response = await fetch(url);
+    let abilityDescriptionContainer = await response.json(); */
+    /* console.log(abilityDescriptionContainer);
+    console.log(abilityDescriptionContainer['effect_entries'][0]['short_effect']); */
+    for (let i = 0; i < currentPokemon['abilities'].length; i++) {
+        const abilityName = currentPokemon['abilities'][i]['ability']['name'];
+        let url = `https://pokeapi.co/api/v2/ability/${abilityName}/`;
+        let response = await fetch(url);
+        let abilityDescriptionContainer = await response.json();
+        const abilityDescription = abilityDescriptionContainer['effect_entries'][1]['short_effect']
+        abilitiesContainer.innerHTML += abilitiesHTML(abilityName, abilityDescription);
+    }
+}
+
+
+function abilitiesHTML(abilityName, abilityDescription){
+    return `
+        <div class="ability-container">
+            <div id="abilityName"><b>${abilityName.charAt(0).toUpperCase() + abilityName.slice(1)}</b></div>
+            <div id="abilityDescription">${abilityDescription}</div>
+        </div>
+    `;
+} 
 
 
 function getSize(){
