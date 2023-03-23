@@ -9,31 +9,32 @@ async function loadPokemon(){
     let response = await fetch(url);
     currentPokemon = await response.json();
     renderPokedex();
-    console.log(currentPokemon);
 }
 
 
 async function renderPokedex(){
     let pokedexContainer = document.getElementById('pokedex');
-    const pokemonCard = document.querySelectorAll('.pokemonCard');
-    if (currentPokemonID < 151) {
+    const pokemonCards = document.querySelectorAll('.pokemonCard');
+    if (currentPokemonID < 152) {
         let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         pokedexContainer.innerHTML += pokemonCardHTML(currentPokemonID);
         currentPokemonID++;
-        changeCardColor(currentPokemonID);
+        changeColor(`pokemonCard${currentPokemonID - 1}`);
         loadPokemon();
     } else {
-        pokemonCard.addEventListener('mouseenter', () => {
-            pokemonCard.style.boxShadow = '0 0 11px rgba(99, 99, 99, .8)';
+        pokemonCards.forEach((pokemonCard) => {
+            pokemonCard.addEventListener('mouseenter', () => {
+                pokemonCard.style.boxShadow = '0 0 11px rgba(99, 99, 99, .8)';
+            });
+            pokemonCard.addEventListener('mouseleave', () => {
+                pokemonCard.style.boxShadow = 'none';
+            });
         });
-          pokemonCard.addEventListener('mouseleave', () => {
-            pokemonCard.style.boxShadow = 'none';
-        });
-        
     } 
 }
+
 
 
 
@@ -59,7 +60,7 @@ async function openPokemonCard(i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
-    changeColor();
+    changeColor('pokedexCard');
     renderPokemonInfo();
     await renderAbout(i);
     renderStats();
@@ -93,17 +94,12 @@ function closePokemonCard() {
 }
 
 
-function changeColor(){
-    pokemonType = currentPokemon['types'][0]['type']['name'];
-    let color = colorMap[0][pokemonType];
-    document.getElementById('pokedexCard').style.backgroundColor = color;
-}
-
-
-function changeCardColor(currentPokemonID){
-    pokemonType = currentPokemon['types'][0]['type']['name'];
-    let color = colorMap[0][pokemonType];
-    document.getElementById(`pokemonCard${currentPokemonID - 1}`).style.backgroundColor = color;
+function changeColor(container){
+    if (currentPokemon && currentPokemon['types']) {
+        pokemonType = currentPokemon['types'][0]['type']['name'];
+        let color = colorMap[0][pokemonType];
+        document.getElementById(container).style.backgroundColor = color;
+    }
 }
 
 
@@ -116,7 +112,7 @@ function renderPokemonInfo(){
 }
 
 
-async function renderAbout(){
+function renderAbout(){
     let aboutContainer = document.getElementById('aboutContainer');
     let statsContainer = document.getElementById('statsContainer');
     let abilitiesContainer = document.getElementById('abilitiesContainer');
