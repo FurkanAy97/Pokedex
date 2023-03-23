@@ -21,11 +21,13 @@
     </div>
 
     <div id="layer" style="display: none;" >
-        <img src="img/x-mark-24.ico" id="closeButton" onclick="closePokemonCard()">
         <div id="pokedexCard" style="display: none;">
             <div class="pokedex-header">
                 <h1 id="pokemonName"></h1>
-                <h3 id="pokemonNumber"></h3>
+                <div class="pokedex-header-right">
+                    <h3 id="pokemonNumber"></h3>
+                    <img src="img/x-mark-24.ico" class="closeButton" onclick="closePokemonCard()">
+                </div>
             </div>
             <div class="pokedex-subheader">
                 <div class="pokemonType" id="pokemonType"></div>

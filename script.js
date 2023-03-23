@@ -36,8 +36,6 @@ async function renderPokedex(){
 }
 
 
-
-
 function pokemonCardHTML(i){
     let secondCardTypeHTML = '';
     let imgSrc = currentPokemon['sprites']['other']['official-artwork']['front_default']
@@ -62,7 +60,7 @@ async function openPokemonCard(i) {
     currentPokemon = await response.json();
     changeColor('pokedexCard');
     renderPokemonInfo();
-    await renderAbout(i);
+    renderAbout();
     renderStats();
     displayLayer();
     renderAbilities(i);
@@ -112,44 +110,41 @@ function renderPokemonInfo(){
 }
 
 
-function renderAbout(){
-    let aboutContainer = document.getElementById('aboutContainer');
-    let statsContainer = document.getElementById('statsContainer');
-    let abilitiesContainer = document.getElementById('abilitiesContainer');
-    document.getElementById('menuLink1').style.fontWeight = 'bold'
-    document.getElementById('menuLink2').style.fontWeight = '400'
-    document.getElementById('menuLink3').style.fontWeight = '400'
-    aboutContainer.style.display = 'block';
-    statsContainer.style.display = 'none';
-    abilitiesContainer.style.display = 'none';
-    getSize();
-}
-
-
-function showStats(){
-    let aboutContainer = document.getElementById('aboutContainer');
-    let statsContainer = document.getElementById('statsContainer');
-    let abilitiesContainer = document.getElementById('abilitiesContainer');
-    document.getElementById('menuLink1').style.fontWeight = '400'
-    document.getElementById('menuLink2').style.fontWeight = 'bold'
-    document.getElementById('menuLink3').style.fontWeight = '400'
-    aboutContainer.style.display = 'none';
-    statsContainer.style.display = 'block';
-    abilitiesContainer.style.display = 'none';
-}
-
-
-function showAbilities(){
-    let aboutContainer = document.getElementById('aboutContainer');
-    let statsContainer = document.getElementById('statsContainer');
-    let abilitiesContainer = document.getElementById('abilitiesContainer');
-    document.getElementById('menuLink1').style.fontWeight = '400'
-    document.getElementById('menuLink2').style.fontWeight = '400'
-    document.getElementById('menuLink3').style.fontWeight = 'bold'
+function showContainer(containerToShow, menuLinkToHighlight) {
+    const aboutContainer = document.getElementById('aboutContainer');
+    const statsContainer = document.getElementById('statsContainer');
+    const abilitiesContainer = document.getElementById('abilitiesContainer');
+   
+    document.getElementById('menuLink1').style.fontWeight = '400';
+    document.getElementById('menuLink2').style.fontWeight = '400';
+    document.getElementById('menuLink3').style.fontWeight = '400';
+    
     aboutContainer.style.display = 'none';
     statsContainer.style.display = 'none';
-    abilitiesContainer.style.display = 'block';
-}
+    abilitiesContainer.style.display = 'none';
+  
+    containerToShow.style.display = 'block'; /* display the active container */
+    menuLinkToHighlight.style.fontWeight = 'bold'; /* highlight the active link */
+    getSize();  
+  }
+  
+  function renderAbout() {
+    const aboutContainer = document.getElementById('aboutContainer');
+    const menuLink = document.getElementById('menuLink1');
+    showContainer(aboutContainer, menuLink);
+  }
+  
+  function showStats() {
+    const statsContainer = document.getElementById('statsContainer');
+    const menuLink = document.getElementById('menuLink2');
+    showContainer(statsContainer, menuLink);
+  }
+  
+  function showAbilities() {
+    const abilitiesContainer = document.getElementById('abilitiesContainer');
+    const menuLink = document.getElementById('menuLink3');
+    showContainer(abilitiesContainer, menuLink);
+  }
 
 
 function renderStats(){

@@ -92,6 +92,12 @@ h1 {
     padding: 2px 10px 0 10px;
 }
 
+.pokedex-header-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pokedex-subheader {
     display: flex;
     justify-content: start;
@@ -269,11 +275,15 @@ h1 {
     font-size: 20px;
 }
 
-
-#closeButton {
-    display: none;
+.closeButton{
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 4px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 0.3rem;
+    margin-left: 6px;
+    width: 27px;
 }
-
 
 @keyframes spin {
     to {
@@ -369,15 +379,7 @@ h1 {
         margin: 14px auto;
     }
 
-    #closeButton {
-        display: block;
-        position: absolute;
-        top: 11px;
-        right: 27px;
-        width: 20px;
-        z-index: 2;
-        background-color: rgb(197, 197, 197);
-        padding: 4px;
-        border-radius: 50%;
+    .closeButton {
+        width: 25px;
     }
 }
