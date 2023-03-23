@@ -15,8 +15,7 @@ async function loadPokemon(){
 
 async function renderPokedex(){
     let pokedexContainer = document.getElementById('pokedex');
-    let loadingScreen = document.getElementById('loading-screen');
-    loadingScreen.style.display = 'block'; // show the loading screen
+    const pokemonCard = document.querySelectorAll('.pokemonCard');
     if (currentPokemonID < 151) {
         let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
         let response = await fetch(url);
@@ -26,8 +25,14 @@ async function renderPokedex(){
         changeCardColor(currentPokemonID);
         loadPokemon();
     } else {
-        loadingScreen.style.display = 'none'; // hide the loading screen
-    }
+        pokemonCard.addEventListener('mouseenter', () => {
+            pokemonCard.style.boxShadow = '0 0 11px rgba(99, 99, 99, .8)';
+        });
+          pokemonCard.addEventListener('mouseleave', () => {
+            pokemonCard.style.boxShadow = 'none';
+        });
+        
+    } 
 }
 
 
@@ -171,11 +176,6 @@ function renderStats(){
 async function renderAbilities(i){
     let abilitiesContainer = document.getElementById('abilitiesContainer');
     abilitiesContainer.innerHTML = '';
-    /* let url = `https://pokeapi.co/api/v2/ability/${i}/`;
-    let response = await fetch(url);
-    let abilityDescriptionContainer = await response.json(); */
-    /* console.log(abilityDescriptionContainer);
-    console.log(abilityDescriptionContainer['effect_entries'][0]['short_effect']); */
     for (let i = 0; i < currentPokemon['abilities'].length; i++) {
         const abilityName = currentPokemon['abilities'][i]['ability']['name'];
         let url = `https://pokeapi.co/api/v2/ability/${abilityName}/`;
