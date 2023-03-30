@@ -5,12 +5,16 @@ body {
 }
 
 header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
     background-color: #383e42;
     color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 75px;
+    padding: 12px;
     box-shadow: 0 0 11px rgba(22, 22, 22, .5);
 }
 
@@ -18,8 +22,27 @@ header h1 {
     margin: 0 12px;
 }
 
+header h3 {
+    width: 20%;
+    margin: 0;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
 h1 {
     margin: 0;
+}
+
+#searchInput{
+    
+    width: 20%;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
 #pokedex {
@@ -108,6 +131,9 @@ h1 {
     width: 280px;
     margin-bottom: -30px;
     object-fit: contain;
+    z-index: 2;
+    position: relative;
+    
 }
 
 .pokemonImg {
@@ -158,6 +184,21 @@ h1 {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 40px 40px 20px 20px;
+    position: relative;
+    z-index: 0;
+}
+
+#arrowLeft{
+    position: absolute;
+    left: 4px;
+    top: -35px;
+    cursor: pointer;
+}
+#arrowRight{
+    position: absolute;
+    right: 4px;
+    top: -35px;
+    cursor: pointer;
 }
 
 .pokedex-data-menu {
@@ -240,7 +281,8 @@ h1 {
     height: fit-content;
     font-size: large;
     color: rgba(0, 0, 0, 0.8);
-}
+  }
+  
 
 .progress{
     width: 95%;
@@ -276,13 +318,11 @@ h1 {
 }
 
 .closeButton{
-    background-color: rgba(255, 255, 255, 0.9);
     padding: 4px;
-    border-radius: 50%;
     cursor: pointer;
     margin-bottom: 0.3rem;
     margin-left: 6px;
-    width: 27px;
+    width: 30px;
 }
 
 @keyframes spin {
@@ -313,6 +353,12 @@ h1 {
     header img {
         width: 30px;
         margin: 0 4px;
+    }
+
+    #searchInput{
+        width: 20%;
+        height: 20px;
+        font-size: 12px;
     }
 
     #pokedex {
@@ -360,6 +406,8 @@ h1 {
 
     #pokemonImg{
         width: 210px;
+        z-index: 2;
+        position: relative;
     }
 
     .pokemonImgBackground {
@@ -377,9 +425,12 @@ h1 {
 
     .description{
         margin: 14px auto;
+        height: 150px;
+        overflow: auto;
+
     }
 
     .closeButton {
-        width: 25px;
+        width: 27px;
     }
 }

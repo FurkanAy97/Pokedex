@@ -12,9 +12,14 @@
 </head>
 <body onload="loadPokemon()">
     <header>
-        <img src="icons/Pokéball.svg.png">
-        <h1>Pokedex</h1>
-        <img src="icons/Pokéball.svg.png">
+        <h3>Gen.1</h3>
+        <div class="title">
+            <img src="icons/Pokéball.svg.png">
+            <h1>Pokedex</h1>
+            <img src="icons/Pokéball.svg.png">
+        </div>
+        <input type="text" id="searchInput" placeholder="Search...">
+
     </header>
     <div id="pokedex">
         
@@ -37,6 +42,8 @@
                 <img id="pokemonImg">
             </div>
             <div class="pokedex-data-container">
+                <img id="arrowLeft" src="icons/arrow_left.ico" onclick="previousPokemon()">
+                <img id="arrowRight" src="icons/arrow_right.ico" onclick="nextPokemon()">
                 <div class="pokedex-data-menu">
                     <a class="menu-links" id="menuLink1" style="font-weight: bold;" href="#" onclick="renderAbout()">About</a>
                     <a class="menu-links" id="menuLink2" href="#" onclick="showStats()">Stats</a>
