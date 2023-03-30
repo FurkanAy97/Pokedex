@@ -189,8 +189,7 @@ async function renderAbilities(i) {
     let url = `https://pokeapi.co/api/v2/ability/${abilityName}/`;
     let response = await fetch(url);
     let abilityDescriptionContainer = await response.json();
-    const abilityDescription =
-      abilityDescriptionContainer["effect_entries"][1]["short_effect"];
+    const abilityDescription = abilityDescriptionContainer["effect_entries"][1]["short_effect"];
     abilitiesContainer.innerHTML += abilitiesHTML(abilityName,abilityDescription);
   }
 }

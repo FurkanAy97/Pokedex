@@ -415,6 +415,7 @@ h1 {
         max-height: 110px;
     }
 
+
     .statsRow p {
         margin-top: 4px;
     }
@@ -425,12 +426,36 @@ h1 {
 
     .description{
         margin: 14px auto;
-        height: 150px;
+        max-height: 150px;
         overflow: auto;
+    }
 
+    .ability-container{
+        max-height: 115px;
+        overflow: auto;
+        margin: 10px auto;
+    }
+
+    #abilityName{
+        font-size: 17px;
     }
 
     .closeButton {
         width: 27px;
     }
+}
+
+@media(max-height: 700px) {
+
+    #statsContainer{
+        overflow: auto;
+        max-height: 300px;
+    }
+
+    .statsRow p {
+        font-size: 20px;
+    }
+
+    
+
 }
