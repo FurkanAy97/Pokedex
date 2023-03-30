@@ -76,9 +76,6 @@ h1 {
     width: 100%;
 }
 
-.pokemonCard:hover {
-    box-shadow: 0 0 11px rgba(99, 99, 99, .8);
-}
 
 .pokemon-card-container {
     width: 284px;
@@ -194,6 +191,7 @@ h1 {
     top: -35px;
     cursor: pointer;
 }
+
 #arrowRight{
     position: absolute;
     right: 4px;
@@ -325,11 +323,6 @@ h1 {
     width: 30px;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
 
 @media(max-width: 700px) {
 
@@ -388,7 +381,6 @@ h1 {
         font-size: 16px;
     }
     
-
     .cardType {
         width: fit-content;
         font-size: 12px;
@@ -455,7 +447,5 @@ h1 {
     .statsRow p {
         font-size: 20px;
     }
-
-    
 
 }

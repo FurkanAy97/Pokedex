@@ -3,12 +3,14 @@ let activePokemonId;
 let pokemonType;
 let currentPokemonID = 1;
 
+
 async function loadPokemon() {
   let url = `https://pokeapi.co/api/v2/pokemon/${currentPokemonID}`;
   let response = await fetch(url);
   currentPokemon = await response.json();
   renderPokedex();
 }
+
 
 async function renderPokedex() {
   let pokedexContainer = document.getElementById("pokedex");
@@ -30,6 +32,7 @@ async function renderPokedex() {
   }
 }
 
+
 function secondCardTypeHTML() {
   if (typeof currentPokemon["types"][1] !== "undefined") {
     return `<div class="pokemonType cardType" id="secondCardType">${
@@ -40,6 +43,7 @@ function secondCardTypeHTML() {
     return ``;
   }
 }
+
 
 function pokemonCardHTML(i) {
   let imgSrc =
@@ -62,9 +66,11 @@ function pokemonCardHTML(i) {
     `;
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("searchInput").addEventListener("input", filterCards);
 });
+
 
 async function openPokemonCard(i) {
   let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -78,12 +84,14 @@ async function openPokemonCard(i) {
   grayArrows();
 }
 
+
 function renderContent(i) {
   renderPokemonInfo();
-  renderAbout();
+  showInfo("aboutContainer", "menuLink1");
   renderStats();
   renderAbilities(i);
 }
+
 
 function displayLayer() {
   let pokedexCard = document.getElementById("pokedexCard");
@@ -99,6 +107,7 @@ function displayLayer() {
   }
 }
 
+
 function closePokemonCard() {
   let pokedexCard = document.getElementById("pokedexCard");
   let layer = document.getElementById("layer");
@@ -107,6 +116,7 @@ function closePokemonCard() {
   layer.removeEventListener("click", closePokemonCard);
 }
 
+
 function changeColor(container) {
   if (currentPokemon && currentPokemon["types"]) {
     pokemonType = currentPokemon["types"][0]["type"]["name"];
@@ -114,6 +124,7 @@ function changeColor(container) {
     document.getElementById(container).style.backgroundColor = color;
   }
 }
+
 
 function renderPokemonInfo() {
   document.getElementById("pokemonName").innerHTML =
@@ -128,6 +139,7 @@ function renderPokemonInfo() {
     currentPokemon["types"][0]["type"]["name"].slice(1);
   secondType();
 }
+
 
 function showContainer(containerToShow, menuLinkToHighlight) {
   const aboutContainer = document.getElementById("aboutContainer");
@@ -147,23 +159,13 @@ function showContainer(containerToShow, menuLinkToHighlight) {
   getSize();
 }
 
-function renderAbout() {
-  const aboutContainer = document.getElementById("aboutContainer");
-  const menuLink = document.getElementById("menuLink1");
+
+function showInfo(container, menu){
+  const aboutContainer = document.getElementById(container);
+  const menuLink = document.getElementById(menu);
   showContainer(aboutContainer, menuLink);
 }
 
-function showStats() {
-  const statsContainer = document.getElementById("statsContainer");
-  const menuLink = document.getElementById("menuLink2");
-  showContainer(statsContainer, menuLink);
-}
-
-function showAbilities() {
-  const abilitiesContainer = document.getElementById("abilitiesContainer");
-  const menuLink = document.getElementById("menuLink3");
-  showContainer(abilitiesContainer, menuLink);
-}
 
 function renderStats() {
   const stats = currentPokemon["stats"];
@@ -175,11 +177,13 @@ function renderStats() {
   renderStat("speed", stats[5]["base_stat"]);
 }
 
+
 function renderStat(statId, baseStat) {
   const statElement = document.getElementById(statId);
   statElement.innerHTML = baseStat;
   statElement.style.width = `${(baseStat / 150) * 100}%`;
 }
+
 
 async function renderAbilities(i) {
   let abilitiesContainer = document.getElementById("abilitiesContainer");
@@ -194,6 +198,7 @@ async function renderAbilities(i) {
   }
 }
 
+
 function abilitiesHTML(abilityName, abilityDescription) {
   return `
         <div class="ability-container">
@@ -205,12 +210,14 @@ function abilitiesHTML(abilityName, abilityDescription) {
     `;
 }
 
+
 function getSize() {
   let height = currentPokemon["height"];
   document.getElementById("height").innerHTML = height / 10 + " Meter";
   let weight = currentPokemon["weight"];
   document.getElementById("weight").innerHTML = weight / 10 + " KG";
 }
+
 
 async function getDesciption(id) {
   let url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
@@ -219,6 +226,7 @@ async function getDesciption(id) {
   document.getElementById("description").innerHTML =
     speciesInfo["flavor_text_entries"][9]["flavor_text"]; 
 }
+
 
 function secondType() {
   if (currentPokemon["types"][1]) {
@@ -230,6 +238,7 @@ function secondType() {
     document.getElementById("pokemonSecondType").style.display = "none";
   }
 }
+
 
 function filterCards() {
   const query = document.getElementById("searchInput").value.toLowerCase();
@@ -245,12 +254,14 @@ function filterCards() {
   });
 }
 
+
 function nextPokemon() {
   if (activePokemonId < 151) {
     activePokemonId++;
     openPokemonCard(activePokemonId);
   }
 }
+
 
 function previousPokemon() {
   if (activePokemonId > 1) {
@@ -259,25 +270,24 @@ function previousPokemon() {
   }
 }
 
+
 function grayArrows() {
   if (activePokemonId == 1) {
-    grayLeftArrow();
+    grayArrow('arrowLeft');
   } else {
     document.getElementById("arrowLeft").style.opacity = "1";
   }
   if (activePokemonId == 151) {
-    grayRightArrow();
+    grayArrow('arrowRight');
   } else {
     document.getElementById("arrowRight").style.opacity = "1";
   }
 }
 
-function grayLeftArrow() {
-  const arrowLeft = document.getElementById("arrowLeft");
-  arrowLeft.style.opacity = "0.3";
+
+function grayArrow(direction) {
+  const arrow = document.getElementById(direction);
+  arrow.style.opacity = "0.3";
 }
 
-function grayRightArrow() {
-  const arrowRight = document.getElementById("arrowRight");
-  arrowRight.style.opacity = "0.3";
-}
+
