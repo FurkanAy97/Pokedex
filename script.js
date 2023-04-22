@@ -275,12 +275,12 @@ function grayArrows() {
   if (activePokemonId == 1) {
     grayArrow('arrowLeft');
   } else {
-    document.getElementById("arrowLeft").style.opacity = "1";
+    fillArrow("arrowLeft")
   }
   if (activePokemonId == 151) {
     grayArrow('arrowRight');
   } else {
-    document.getElementById("arrowRight").style.opacity = "1";
+    fillArrow("arrowRight")
   }
 }
 
@@ -288,6 +288,12 @@ function grayArrows() {
 function grayArrow(direction) {
   const arrow = document.getElementById(direction);
   arrow.style.opacity = "0.3";
+}
+
+
+function fillArrow(direction){
+  const arrow = document.getElementById(direction);
+  arrow.style.opacity = "1";
 }
 
 
